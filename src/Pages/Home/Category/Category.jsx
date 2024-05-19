@@ -7,15 +7,14 @@ import img2 from "../../../assets/home/slide2.jpg";
 import img3 from "../../../assets/home/slide3.jpg";
 import img4 from "../../../assets/home/slide4.jpg";
 import img5 from "../../../assets/home/slide5.jpg";
+import SectionTitle from "../../../Components/SectionsTitle/SectionTitle";
 const Category = () => {
   return (
     <div className="my-24">
-        <div className="text-center w-1/4 mx-auto space-y-3 mb-4">
-            <h3 className="text-lg"><i>---From 10:00am to 11:00pm---</i></h3>
-            <hr />
-            <h2 className="text-4xl font-semibold">ORDER ONLINE</h2>
-            <hr />
-        </div>
+      <SectionTitle
+        subHeading={"From 10:00am to 11:00pm"}
+        heading={"Order Now"}
+      ></SectionTitle>
       <Swiper
         slidesPerView={3}
         spaceBetween={10}
