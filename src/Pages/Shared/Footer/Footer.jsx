@@ -1,9 +1,8 @@
 import "./footer.css";
-// import footerBg from "../../../assets/FooterBg/bg.png"
 const Footer = () => {
   const currentYear = new Date().getFullYear();
   return (
-    <div className="copyRight">
+    <div className="copyRight mt-24">
       <footer className="footer p-10 text-neutral-content">
         <aside>
           <svg
