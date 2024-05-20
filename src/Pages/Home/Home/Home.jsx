@@ -1,5 +1,8 @@
 import Banner from "../Banner/Banner";
 import Category from "../Category/Category";
+import Contact from "../Contact/Contact";
+import PopularItems from "../PopularItems/PopularItems";
+import Recommends from "../Recommends/Recommends";
 import ServiceBanner from "../ServiceBanner/ServiceBanner";
 
 
@@ -9,6 +12,9 @@ const Home = () => {
             <Banner></Banner>
             <Category></Category>
             <ServiceBanner></ServiceBanner>
+            <PopularItems></PopularItems>
+            <Contact></Contact>
+            <Recommends></Recommends>
         </div>
     );
 };
