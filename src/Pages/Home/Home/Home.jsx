@@ -5,6 +5,7 @@ import Featured from "../Featured/Featured";
 import PopularItems from "../PopularItems/PopularItems";
 import Recommends from "../Recommends/Recommends";
 import ServiceBanner from "../ServiceBanner/ServiceBanner";
+import Testimonial from "../Testimonial/Testimonial";
 
 
 const Home = () => {
@@ -17,6 +18,7 @@ const Home = () => {
             <Contact></Contact>
             <Recommends></Recommends>
             <Featured></Featured>
+            <Testimonial></Testimonial>
         </div>
     );
 };
