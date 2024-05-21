@@ -13,7 +13,7 @@ const Navbar = () => {
         <Link to={'/'}>DASHBOARD</Link>
       </li>
       <li>
-        <Link to={'/'}>OUR MENU</Link>
+        <Link to={'/menu'}>OUR MENU</Link>
       </li>
       <li>
         <Link to={'/'}>OUR SHOP</Link>
@@ -47,7 +47,7 @@ const Navbar = () => {
             {links}
           </ul>
         </div>
-        <a className="btn btn-ghost text-xl">Bistro Boss <br /> Restaurant</a>
+        <a className="btn btn-ghost text-xl uppercase">Bistro Boss <br /> Restaurant</a>
       </div>
       <div className="navbar-center hidden lg:flex">
         <ul className="menu menu-horizontal px-1">
