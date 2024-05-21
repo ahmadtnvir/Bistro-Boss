@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import SectionTitle from "../../../Components/SectionsTitle/SectionTitle";
 import MenuItems from "../../Shared/MenuItems/MenuItems";
+import Button from "../../../Components/Button/Button";
 
 
 const PopularItems = () => {
@@ -28,7 +29,8 @@ const PopularItems = () => {
 
             </div>
             <div className="text-center mt-10">
-            <button className="btn btn-outline border-t-0 border-l-0 border-r-0 font-semibold">View Full Menu</button>
+                <Button text={'View Full Menu'}></Button>
+            {/* <button className="btn btn-outline border-t-0 border-l-0 border-r-0 font-semibold">View Full Menu</button> */}
             </div>
         </div>
     );
