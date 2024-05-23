@@ -1,20 +1,18 @@
 import Button from "../../../Components/Button/Button";
 
-const ItemCard = ({item}) => {
-    const {image, name, recipe} = item;
+const ItemCard = ({ item }) => {
+  const { image, price, name, recipe } = item;
   return (
     <div className="card bg-base-100 shadow-xl">
       <figure>
-        <img
-          src={image}
-          alt=""
-        />
+        <img src={image} alt="" />
       </figure>
+      {price && <p className=" badge bg-slate-800 px-5 absolute right-0 text-white mr-6 mt-6 border-none">${price}</p>}
       <div className="card-body items-center text-center">
         <h2 className="card-title">{name}</h2>
         <p>{recipe}</p>
         <div className="card-actions">
-          <Button text={'Add To Cart'}></Button>
+          <Button text={"Add To Cart"}></Button>
         </div>
       </div>
     </div>
