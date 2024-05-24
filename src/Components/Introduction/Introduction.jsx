@@ -20,7 +20,7 @@ const Introduction = ({
             className="w-full h-full text-neutral p-8 flex flex-col justify-center items-center"
             style={{ backgroundColor: contentBackgroundColor, color: color }}
           >
-            <h1 className="mb-5 text-5xl font-bold">{heading}</h1>
+            <h1 className="mb-5 text-5xl font-bold uppercase">{heading}</h1>
             <p className="mb-5">{paragraph}</p>
           </div>
         </div>

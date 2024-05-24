@@ -45,7 +45,7 @@ const Menu = () => {
 
       <MenuCategory
         img={dessertImg}
-        heading={"Desserts"}
+        heading={"dessert"}
         paragraph={
           "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Vel, accusamus."
         }
@@ -57,7 +57,7 @@ const Menu = () => {
       <MenuCategory 
       items={pizza} 
       img={pizzaImg} 
-      heading={'Pizza'} 
+      heading={'pizza'} 
       paragraph={"Lorem ipsum dolor sit amet, consectetur adipisicing elit. Vel, accusamus."} 
       ></MenuCategory>
 
@@ -67,7 +67,7 @@ const Menu = () => {
       <MenuCategory 
       items={salad} 
       img={saladImg} 
-      heading={"Salad"} 
+      heading={"salad"} 
       paragraph={"Lorem ipsum dolor sit amet, consectetur adipisicing elit. Vel, accusamus."}
       ></MenuCategory>
       
@@ -76,7 +76,7 @@ const Menu = () => {
       <MenuCategory
       items={soup}
       img={soupImg}
-      heading={"Soup"}
+      heading={"soup"}
       paragraph={'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Vel, accusamus.'}
       ></MenuCategory>
     </div>

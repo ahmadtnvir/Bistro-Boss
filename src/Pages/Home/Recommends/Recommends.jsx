@@ -6,7 +6,7 @@ const Recommends = () => {
   const [items, setItems] = useState([]);
   const limitItems = items.slice(0, 3);
   useEffect(() => {
-    fetch("/menu.json")
+    fetch("http://localhost:5000/menu")
       .then((res) => res.json())
       .then((data) => {
         // console.log(data);
