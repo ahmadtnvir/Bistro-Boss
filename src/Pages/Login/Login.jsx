@@ -2,18 +2,43 @@ import "./login.css";
 import img from "../../assets/others/authentication2.png";
 import { Link } from "react-router-dom";
 import { FaFacebookF, FaGithub, FaGoogle } from "react-icons/fa";
-import { useForm } from "react-hook-form"
+import { useForm } from "react-hook-form";
+import {
+  loadCaptchaEnginge,
+  LoadCanvasTemplate,
+  validateCaptcha,
+} from "react-simple-captcha";
+import { useEffect, useRef, useState } from "react";
 
 const Login = () => {
+  const captchaRef = useRef(null);
+  const [disabled, setDisabled] = useState(true);
+  useEffect(() => {
+    loadCaptchaEnginge(6);
+  }, []);
+
   const {
     register,
     handleSubmit,
     formState: { errors },
-  } = useForm()
+  } = useForm();
 
   const onSubmit = (data) => {
-    console.log(data)
-  }
+    console.log(data);
+  };
+
+  const handleValidateCaptcha = (e) => {
+    e.preventDefault();
+    const user_captcha_value = captchaRef.current.value;
+    if (validateCaptcha(user_captcha_value)) {
+      setDisabled(false);
+      alert("Captcha validated successfully.");
+    } else {
+      setDisabled(true);
+      alert("Captcha validation failed. Please try again.");
+    }
+  };
+
   return (
     <div className={"main-container hero min-h-screen p-20 rounded-2xl"}>
       <div className="hero-content flex-col lg:flex-row shadow-2xl form-container rounded-2xl py-5">
@@ -51,33 +76,32 @@ const Login = () => {
             </div>
             <div className="form-control">
               <label className="label">
-                <span className="label-text"></span>
+                <LoadCanvasTemplate />
               </label>
-              <input
-                type="text"
-                placeholder=""
-                className="input input-bordered"
-                {...register("captchaDemo", { required: true })}
-              />
-              {errors.captchaDemo && <span>This field is required</span>}
-              <label className="label">
-                <a href="#" className="label-text-alt link link-hover">
-                  Reload Captcha
-                </a>
-              </label>
-            </div>
 
-            <div className="form-control">
-              <input
-                type="text"
-                placeholder="Type Here"
-                className="input input-bordered"
-                {...register("captcha", { required: true })}
-              />
-              {errors.captcha && <span>This field is required</span>}
+              <div className="join">
+                <input
+                  type="text"
+                  ref={captchaRef}
+                  className="input input-bordered join-item"
+                  placeholder="Type Here Captcha Above"
+                />
+                <button
+                  onClick={handleValidateCaptcha}
+                  className="btn join-item rounded-r-full"
+                >
+                  Verify Captcha
+                </button>
+              </div>
             </div>
             <div className="form-control mt-6">
-              <button className="btn bg-[#D1A054B2] text-white">Sign In</button>
+              <button
+                type="submit"
+                disabled={disabled}
+                className="btn bg-[#D1A054B2] text-white"
+              >
+                Sign In
+              </button>
             </div>
           </form>
           <div className="text-center space-y-6">
@@ -91,13 +115,13 @@ const Login = () => {
             <p>Or Sign in with</p>
             <div className="flex justify-center items-center gap-6">
               <button className="btn btn-circle btn-outline">
-              <FaFacebookF />
+                <FaFacebookF />
               </button>
               <button className="btn btn-circle btn-outline">
-              <FaGoogle />
+                <FaGoogle />
               </button>
               <button className="btn btn-circle btn-outline">
-              <FaGithub />
+                <FaGithub />
               </button>
             </div>
           </div>
