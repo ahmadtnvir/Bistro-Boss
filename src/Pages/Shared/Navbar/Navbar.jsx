@@ -1,31 +1,44 @@
+import { useContext } from "react";
 import { Link } from "react-router-dom";
+import { AuthContext } from "../../../Provider/AuthProvider";
 
 const Navbar = () => {
   const links = (
     <>
       <li>
-        <Link to={'/'}>HOME</Link>
+        <Link to={"/"}>HOME</Link>
       </li>
       <li>
-        <Link to={'/'}>CONTACT US</Link>
+        <Link to={"/"}>CONTACT US</Link>
       </li>
       <li>
-        <Link to={'/'}>DASHBOARD</Link>
+        <Link to={"/"}>DASHBOARD</Link>
       </li>
       <li>
-        <Link to={'/menu'}>OUR MENU</Link>
+        <Link to={"/menu"}>OUR MENU</Link>
       </li>
       <li>
-        <Link to={'/order/salad'}>ORDER</Link>
+        <Link to={"/order/salad"}>ORDER</Link>
       </li>
       <li>
-        <Link to={'/login'}>LOGIN</Link>
+        <Link to={"/login"}>LOGIN</Link>
       </li>
       <li>
-        <Link to={'/register'}>SIGN UP</Link>
+        <Link to={"/register"}>SIGN UP</Link>
       </li>
     </>
   );
+
+  const { user, logOut } = useContext(AuthContext);
+
+  const handleSignOut = () => {
+    logOut()
+      .then(() => {})
+      .catch(error => {
+        console.error(error);
+      })
+  }
+
   return (
     <div className="navbar bg-black text-white z-10 bg-opacity-30 max-w-[90%] md:max-w-[90%] lg:max-w-6xl fixed ">
       <div className="navbar-start">
@@ -53,15 +66,24 @@ const Navbar = () => {
             {links}
           </ul>
         </div>
-        <a className="btn btn-ghost text-xl uppercase">Bistro Boss <br /> Restaurant</a>
+        <a className="btn btn-ghost text-xl uppercase">
+          Bistro Boss <br /> Restaurant
+        </a>
       </div>
       <div className="navbar-center hidden lg:flex">
-        <ul className="menu menu-horizontal px-1">
-          {links}
-        </ul>
+        <ul className="menu menu-horizontal px-1">{links}</ul>
       </div>
       <div className="navbar-end">
-        <a className="btn">Button</a>
+        {user ? (
+          <>
+            <a onClick={handleSignOut}  className="btn mr-4">Sign Out</a>
+            <button className="btn">{user.email}</button>
+          </>
+        ) : (
+          <Link to={"/login"}>
+            <a className="btn">Sign In</a>
+          </Link>
+        )}
       </div>
     </div>
   );

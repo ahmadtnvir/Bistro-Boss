@@ -8,7 +8,8 @@ import {
   LoadCanvasTemplate,
   validateCaptcha,
 } from "react-simple-captcha";
-import { useEffect, useRef, useState } from "react";
+import { useContext, useEffect, useRef, useState } from "react";
+import { AuthContext } from "../../Provider/AuthProvider";
 
 const Login = () => {
   const captchaRef = useRef(null);
@@ -23,8 +24,31 @@ const Login = () => {
     formState: { errors },
   } = useForm();
 
+  const { signIn , googleSignIn } = useContext(AuthContext);
+
   const onSubmit = (data) => {
     console.log(data);
+    const {email, password} = data;
+
+    signIn(email, password)
+      .then(result => {
+        console.log(result);
+      })
+      .then(error => {
+        console.error(error);
+      })
+
+      
+  };
+
+  const handleGoogle = () => {
+    googleSignIn()
+        .then(result => {
+          console.log(result);
+        })
+        .catch(error => {
+          console.error(error);
+        })
   };
 
   const handleValidateCaptcha = (e) => {
@@ -38,6 +62,7 @@ const Login = () => {
       alert("Captcha validation failed. Please try again.");
     }
   };
+
 
   return (
     <div className={"main-container hero min-h-screen p-20 rounded-2xl"}>
@@ -117,7 +142,7 @@ const Login = () => {
               <button className="btn btn-circle btn-outline">
                 <FaFacebookF />
               </button>
-              <button className="btn btn-circle btn-outline">
+              <button onClick={handleGoogle} className="btn btn-circle btn-outline">
                 <FaGoogle />
               </button>
               <button className="btn btn-circle btn-outline">
