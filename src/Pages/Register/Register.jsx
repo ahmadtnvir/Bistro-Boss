@@ -3,6 +3,8 @@ import img from "../../assets/others/authentication2.png";
 import { Link } from "react-router-dom";
 import { FaFacebookF, FaGithub, FaGoogle } from "react-icons/fa";
 import { useForm } from "react-hook-form";
+import { useContext } from "react";
+import { AuthContext } from "../../Provider/AuthProvider";
 
 const Register = () => {
   const {
@@ -11,8 +13,20 @@ const Register = () => {
     formState: { errors },
   } = useForm();
 
+  const {createUser} = useContext(AuthContext);
+
   const onSubmit = (data) => {
-    console.log(data);
+    // console.log(data);
+    const {email, password} = data;
+
+
+    createUser(email, password)
+      .then(result => {
+        console.log(result);
+      })
+      .catch(error => {
+        console.error(error);
+      })
   };
   return (
     <div className={"main-container hero min-h-screen p-20 rounded-2xl"}>
