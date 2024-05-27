@@ -1,6 +1,7 @@
 import { useContext } from "react";
 import { Link } from "react-router-dom";
 import { AuthContext } from "../../../Provider/AuthProvider";
+import { MdShoppingCart } from "react-icons/md";
 
 const Navbar = () => {
   const links = (
@@ -20,12 +21,12 @@ const Navbar = () => {
       <li>
         <Link to={"/order/salad"}>ORDER</Link>
       </li>
-      {/* <li>
-        <Link to={"/login"}>LOGIN</Link>
-      </li>
       <li>
-        <Link to={"/register"}>SIGN UP</Link>
-      </li> */}
+        <Link className="indicator mt-1" to={"/"}>
+          <span className="indicator-item badge badge-info badge-xs -mr-2">0+</span>
+          <MdShoppingCart />
+        </Link>
+      </li>
     </>
   );
 
@@ -61,7 +62,7 @@ const Navbar = () => {
           </div>
           <ul
             tabIndex={0}
-            className="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-base-100 rounded-box w-52"
+            className="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-base-100 rounded-box w-52 text-gray-600"
           >
             {links}
           </ul>
@@ -79,7 +80,6 @@ const Navbar = () => {
             <a onClick={handleSignOut} className="btn mr-4">
               Sign Out
             </a>
-            {/* <button className="btn">{user.email}</button> */}
             <div className="avatar">
               <div className="w-12 rounded-full ring ring-primary ring-offset-base-100 ring-offset-2">
                 <img src={user.photoURL} />
@@ -87,9 +87,14 @@ const Navbar = () => {
             </div>
           </>
         ) : (
-          <Link to={"/login"}>
-            <a className="btn">Sign In</a>
-          </Link>
+          <>
+            <Link to={"/login"}>
+              <a className="btn mr-4">Sign In</a>
+            </Link>
+            <Link to={"/register"}>
+              <a className="btn">Sign Up</a>
+            </Link>
+          </>
         )}
       </div>
     </div>
