@@ -12,7 +12,7 @@ const Navbar = () => {
         <Link to={"/"}>CONTACT US</Link>
       </li>
       <li>
-        <Link to={"/"}>DASHBOARD</Link>
+        <Link to={"/dashboard"}>DASHBOARD</Link>
       </li>
       <li>
         <Link to={"/menu"}>OUR MENU</Link>
@@ -34,10 +34,10 @@ const Navbar = () => {
   const handleSignOut = () => {
     logOut()
       .then(() => {})
-      .catch(error => {
+      .catch((error) => {
         console.error(error);
-      })
-  }
+      });
+  };
 
   return (
     <div className="navbar bg-black text-white z-10 bg-opacity-30 max-w-[90%] md:max-w-[90%] lg:max-w-6xl fixed ">
@@ -76,8 +76,15 @@ const Navbar = () => {
       <div className="navbar-end">
         {user ? (
           <>
-            <a onClick={handleSignOut}  className="btn mr-4">Sign Out</a>
-            <button className="btn">{user.email}</button>
+            <a onClick={handleSignOut} className="btn mr-4">
+              Sign Out
+            </a>
+            {/* <button className="btn">{user.email}</button> */}
+            <div className="avatar">
+              <div className="w-12 rounded-full ring ring-primary ring-offset-base-100 ring-offset-2">
+                <img src={user.photoURL} />
+              </div>
+            </div>
           </>
         ) : (
           <Link to={"/login"}>

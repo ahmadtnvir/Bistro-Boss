@@ -1,6 +1,6 @@
 import "./login.css";
 import img from "../../assets/others/authentication2.png";
-import { Link } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { FaFacebookF, FaGithub, FaGoogle } from "react-icons/fa";
 import { useForm } from "react-hook-form";
 import {
@@ -11,10 +11,14 @@ import {
 import { useContext, useEffect, useRef, useState } from "react";
 import { AuthContext } from "../../Provider/AuthProvider";
 import { Helmet } from "react-helmet-async";
+import Swal from "sweetalert2";
+import 'animate.css';
 
 const Login = () => {
   const captchaRef = useRef(null);
   const [disabled, setDisabled] = useState(true);
+  const navigate = useNavigate();
+  const location = useLocation();
   useEffect(() => {
     loadCaptchaEnginge(6);
   }, []);
@@ -36,9 +40,26 @@ const Login = () => {
     signIn(email, password)
       .then((result) => {
         console.log(result);
+        
+        Swal.fire({
+          position: "top-end",
+          icon: "success",
+          title: "Sign In Successful.",
+          showConfirmButton: false,
+          timer: 1500
+        });
+        setTimeout(() => {
+          navigate( location?.state ? location.state : '/' )
+        }, 1800);
       })
-      .then((error) => {
+      .catch((error) => {
         console.error(error);
+
+        Swal.fire({
+          icon: "error",
+          title: "Oops...",
+          text: 'Provide valid password!',
+        });
       });
   };
 
@@ -46,9 +67,24 @@ const Login = () => {
     googleSignIn()
       .then((result) => {
         console.log(result);
+        Swal.fire({
+          position: "top-end",
+          icon: "success",
+          title: "Sign In Successful.",
+          showConfirmButton: false,
+          timer: 1500
+        });
+        setTimeout(() => {
+          navigate(location?.state ? location.state :'/')
+        }, 1800);
       })
       .catch((error) => {
         console.error(error);
+        Swal.fire({
+          icon: "error",
+          title: "Oops...",
+          text: 'Provide valid password!',
+        });
       });
   };
 
@@ -57,10 +93,30 @@ const Login = () => {
     const user_captcha_value = captchaRef.current.value;
     if (validateCaptcha(user_captcha_value)) {
       setDisabled(false);
-      alert("Captcha validated successfully.");
+      Swal.fire({
+        title: "Captcha Verified Successfully.",
+        showClass: {
+          popup: `
+            animate__animated
+            animate__fadeInUp
+            animate__faster
+          `
+        },
+        hideClass: {
+          popup: `
+            animate__animated
+            animate__fadeOutDown
+            animate__faster
+          `
+        }
+      });
     } else {
       setDisabled(true);
-      alert("Captcha validation failed. Please try again.");
+      Swal.fire({
+        icon: "error",
+        title: "Oops...",
+        text: "Captcha validation failed. Please try again!"
+      });
     }
   };
 
