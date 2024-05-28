@@ -12,13 +12,18 @@ import { useContext, useEffect, useRef, useState } from "react";
 import { AuthContext } from "../../Provider/AuthProvider";
 import { Helmet } from "react-helmet-async";
 import Swal from "sweetalert2";
-import 'animate.css';
+import "animate.css";
 
 const Login = () => {
   const captchaRef = useRef(null);
   const [disabled, setDisabled] = useState(true);
+  // TODO: Enable disabled when all works done. Now temporary off. 
+  console.log(disabled);
+
   const navigate = useNavigate();
   const location = useLocation();
+  const from = location.state?.from?.pathname || "/";
+
   useEffect(() => {
     loadCaptchaEnginge(6);
   }, []);
@@ -40,16 +45,16 @@ const Login = () => {
     signIn(email, password)
       .then((result) => {
         console.log(result);
-        
+
         Swal.fire({
           position: "top-end",
           icon: "success",
           title: "Sign In Successful.",
           showConfirmButton: false,
-          timer: 1500
+          timer: 1500,
         });
         setTimeout(() => {
-          navigate( location?.state ? location.state : '/' )
+          navigate(from, { replace: true });
         }, 1800);
       })
       .catch((error) => {
@@ -58,7 +63,7 @@ const Login = () => {
         Swal.fire({
           icon: "error",
           title: "Oops...",
-          text: 'Provide valid password!',
+          text: "Provide valid password!",
         });
       });
   };
@@ -72,10 +77,10 @@ const Login = () => {
           icon: "success",
           title: "Sign In Successful.",
           showConfirmButton: false,
-          timer: 1500
+          timer: 1500,
         });
         setTimeout(() => {
-          navigate(location?.state ? location.state :'/')
+          navigate(from, { replace: true });
         }, 1800);
       })
       .catch((error) => {
@@ -83,7 +88,7 @@ const Login = () => {
         Swal.fire({
           icon: "error",
           title: "Oops...",
-          text: 'Provide valid password!',
+          text: "Provide valid password!",
         });
       });
   };
@@ -100,22 +105,22 @@ const Login = () => {
             animate__animated
             animate__fadeInUp
             animate__faster
-          `
+          `,
         },
         hideClass: {
           popup: `
             animate__animated
             animate__fadeOutDown
             animate__faster
-          `
-        }
+          `,
+        },
       });
     } else {
       setDisabled(true);
       Swal.fire({
         icon: "error",
         title: "Oops...",
-        text: "Captcha validation failed. Please try again!"
+        text: "Captcha validation failed. Please try again!",
       });
     }
   };
@@ -160,6 +165,8 @@ const Login = () => {
                 />
                 {errors.password && <span>This field is required</span>}
               </div>
+
+              {/* Re captcha */}
               <div className="form-control">
                 <label className="label">
                   <LoadCanvasTemplate />
@@ -181,9 +188,12 @@ const Login = () => {
                 </div>
               </div>
               <div className="form-control mt-6">
+                {/* // TODO: apply disable for re captcha 
+                  disabled={disabled}
+                */}
                 <button
                   type="submit"
-                  disabled={disabled}
+                  disabled={false}
                   className="btn bg-[#D1A054B2] text-white"
                 >
                   Sign In
