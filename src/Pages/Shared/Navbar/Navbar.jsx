@@ -2,8 +2,10 @@ import { useContext } from "react";
 import { Link } from "react-router-dom";
 import { AuthContext } from "../../../Provider/AuthProvider";
 import { MdShoppingCart } from "react-icons/md";
+import useCart from "../../../state/useCart";
 
 const Navbar = () => {
+  const [cart] = useCart();
   const links = (
     <>
       <li>
@@ -23,7 +25,7 @@ const Navbar = () => {
       </li>
       <li>
         <Link className="indicator mt-1" to={"/"}>
-          <span className="indicator-item badge badge-info badge-xs -mr-2">0+</span>
+          <span className="indicator-item badge badge-info badge-xs -mr-2">+{cart.length}</span>
           <MdShoppingCart />
         </Link>
       </li>
@@ -31,6 +33,7 @@ const Navbar = () => {
   );
 
   const { user, logOut } = useContext(AuthContext);
+
 
   const handleSignOut = () => {
     logOut()
