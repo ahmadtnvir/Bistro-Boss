@@ -15,17 +15,16 @@ const Navbar = () => {
         <Link to={"/"}>CONTACT US</Link>
       </li>
       <li>
-        <Link to={"/dashboard"}>DASHBOARD</Link>
-      </li>
-      <li>
         <Link to={"/menu"}>OUR MENU</Link>
       </li>
       <li>
         <Link to={"/order/salad"}>ORDER</Link>
       </li>
       <li>
-        <Link className="indicator mt-1" to={"/"}>
-          <span className="indicator-item badge badge-info badge-xs -mr-2">+{cart.length}</span>
+        <Link className="indicator mt-1" to={"/dashboard/cart"}>
+          <span className="indicator-item badge badge-info badge-xs -mr-2">
+            +{cart.length}
+          </span>
           <MdShoppingCart />
         </Link>
       </li>
@@ -33,7 +32,6 @@ const Navbar = () => {
   );
 
   const { user, logOut } = useContext(AuthContext);
-
 
   const handleSignOut = () => {
     logOut()
