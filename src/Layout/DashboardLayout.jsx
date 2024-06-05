@@ -16,7 +16,7 @@ const Dashboard = () => {
           <Outlet></Outlet>
           <label
             htmlFor="my-drawer-2"
-            className="btn btn-primary drawer-button lg:hidden"
+            className="btn btn-outline drawer-button lg:hidden"
           >
             Open drawer
           </label>
@@ -28,7 +28,11 @@ const Dashboard = () => {
             className="drawer-overlay"
           ></label>
           <ul className="menu p-4 w-80 min-h-full bg-[#D1A054] text-base-content">
-            <h1 className='uppercase text-3xl font-bold mb-10'>Bistro Boss<br />Restaurant</h1>
+            <h1 className="uppercase text-3xl font-bold mb-10">
+              Bistro Boss
+              <br />
+              Restaurant
+            </h1>
             {/* Sidebar content here */}
             <li>
               <a to={"/dashboard/userHome"}>
@@ -74,21 +78,20 @@ const Dashboard = () => {
               </a>
             </li>
             <li>
-              
               <a href="/order/salad">
-              <IoMenu />
+                <IoMenu />
                 MENU
               </a>
             </li>
             <li>
               <a to={"/dashboard/userHome"}>
-              <GiShoppingBag />
+                <GiShoppingBag />
                 SHOP
               </a>
             </li>
             <li>
               <a to={"/dashboard/userHome"}>
-              <MdOutlineForwardToInbox />
+                <MdOutlineForwardToInbox />
                 CONTACT
               </a>
             </li>
